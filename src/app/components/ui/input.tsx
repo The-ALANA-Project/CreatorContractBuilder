@@ -1,0 +1,49 @@
+import * as React from "react";
+
+import { cn } from "./utils";
+
+function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  // Prevent mobile zoom and adjust for sticky header
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    // Call the original onFocus if provided
+    props.onFocus?.(e);
+    
+    // On mobile, scroll to account for sticky header
+    if (inputRef.current && window.innerWidth < 768) {
+      setTimeout(() => {
+        if (inputRef.current) {
+          const headerHeight = 200; // Sticky header height on mobile
+          const elementPosition = inputRef.current.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - headerHeight;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100); // Short delay for mobile keyboard
+    }
+  };
+
+  return (
+    <input
+      ref={inputRef}
+      type={type}
+      data-slot="input"
+      className={cn(
+        "file:text-foreground placeholder:text-[#131718]/30 selection:bg-primary selection:text-primary-foreground dark:bg-input/30 flex h-9 w-full min-w-0 rounded-lg px-3 py-1 bg-input-background transition-[color,box-shadow,border-color] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
+        "border border-[#131718]/50", // 50% opacity black border by default
+        "text-[16px]", // Force 16px on all screens to prevent iOS zoom
+        "focus-visible:border-[#131718]", // 100% opacity on focus
+        "aria-invalid:border-destructive",
+        className,
+      )}
+      onFocus={handleFocus}
+      {...props}
+    />
+  );
+}
+
+export { Input };
