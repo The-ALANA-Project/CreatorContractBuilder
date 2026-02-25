@@ -2,7 +2,7 @@
 
 ![Creator Contract Builder](https://pink-quick-lizard-297.mypinata.cloud/ipfs/bafybeihvywcfkslwnr3pgx3lod3hbzaaaomapy2gerbommzdby2d3y6v4e/CCB-Social%20Crawler%20Image.png)
 
-A free professional contract builder for creators and creative freelancers. Generate custom, export-ready contracts with toggleable legal clauses, multiple contract types, multi-currency support (including stablecoins), and comprehensive legal protections -- all from a single mobile-optimized page.
+A free professional contract builder for creators and creative freelancers. Generate custom, export-ready contracts with toggleable legal clauses, multiple contract types, multi-currency support (including stablecoins), and comprehensive legal protections; all from a single mobile-optimized page.
 
 ## Features
 
