@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router";
 import jsPDF from "jspdf";
+import gsap from "gsap";
 
 interface ContractData {
   // Contract Type
@@ -1037,6 +1038,21 @@ export default function ContractBuilder() {
   });
   const downloadMenuRef = useRef<HTMLDivElement>(null);
   const mobileDownloadMenuRef = useRef<HTMLDivElement>(null);
+  const pageRef = useRef<HTMLDivElement>(null);
+
+  // Entrance animation — picks up from intro's liquid glass dissolve exit
+  useEffect(() => {
+    const isTransitioning = sessionStorage.getItem('intro-transitioning') === 'true';
+    if (!isTransitioning || !pageRef.current) return;
+
+    sessionStorage.removeItem('intro-transitioning');
+
+    gsap.fromTo(
+      pageRef.current,
+      { opacity: 0, filter: 'blur(30px)', scale: 1.04 },
+      { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1, ease: 'power2.out' }
+    );
+  }, []);
 
   // Load data from localStorage on mount
   useEffect(() => {
@@ -1930,7 +1946,7 @@ export default function ContractBuilder() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div ref={pageRef} className="min-h-screen bg-background text-foreground">
       {/* SVG Filter for Glass Distortion */}
       <svg width="0" height="0" style={{ position: 'absolute' }}>
         <defs>
