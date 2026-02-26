@@ -11,13 +11,6 @@ export default function Intro() {
   const line3Ref = useRef<HTMLHeadingElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
-  // Skip intro if already seen this session
-  useEffect(() => {
-    if (sessionStorage.getItem('intro-seen') === 'true') {
-      navigate('/builder', { replace: true });
-    }
-  }, [navigate]);
-
   // GSAP barrel-roll animation
   useEffect(() => {
     if (!containerRef.current) return;
