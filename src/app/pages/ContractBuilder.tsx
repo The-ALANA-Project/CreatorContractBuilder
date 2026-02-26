@@ -1050,7 +1050,15 @@ export default function ContractBuilder() {
     gsap.fromTo(
       pageRef.current,
       { opacity: 0, filter: 'blur(30px)', scale: 1.04 },
-      { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1, ease: 'power2.out' }
+      { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1, ease: 'power2.out',
+        onComplete() {
+          // Clear inline transform/filter so fixed positioning works for children
+          if (pageRef.current) {
+            pageRef.current.style.transform = '';
+            pageRef.current.style.filter = '';
+          }
+        }
+      }
     );
   }, []);
 
@@ -1946,6 +1954,7 @@ export default function ContractBuilder() {
   };
 
   return (
+    <>
     <div ref={pageRef} className="min-h-screen bg-background text-foreground">
       {/* SVG Filter for Glass Distortion */}
       <svg width="0" height="0" style={{ position: 'absolute' }}>
@@ -3708,8 +3717,10 @@ export default function ContractBuilder() {
           </p>
         </footer>
 
-        {/* Mobile Bottom Navigation - Hidden on Desktop */}
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#131718] border-t border-[#131718] pb-safe">
+    </div>
+
+      {/* Mobile Bottom Navigation - Outside pageRef so fixed positioning is never broken by transforms */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#131718] border-t border-[#131718] pb-safe">
           <div className="flex items-center justify-around py-3 px-4">
             {/* Home */}
             <button
@@ -3797,6 +3808,6 @@ export default function ContractBuilder() {
             </button>
           </div>
         </div>
-    </div>
+    </>
   );
 }
