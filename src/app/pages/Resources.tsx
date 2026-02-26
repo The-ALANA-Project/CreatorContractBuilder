@@ -80,7 +80,7 @@ export default function Resources() {
         {/* Home/Contract Builder Button */}
         <button
           className="w-12 h-12 flex items-center justify-center bg-[#131718] text-[#FEE6EA] rounded-full shadow-[0_6px_6px_rgba(0,0,0,0.2),0_0_20px_rgba(0,0,0,0.1)] transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,2.2)] hover:scale-105 hover:shadow-[0_8px_8px_rgba(0,0,0,0.25),0_0_24px_rgba(0,0,0,0.15)]"
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/builder')}
           title="Contract Builder"
         >
           <Home className="w-5 h-5" />
@@ -196,7 +196,7 @@ export default function Resources() {
             href="https://www.linkedin.com/in/stella-achenbach/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-primary hover:underline"
+            className="text-primary hover:underline font-bold"
           >
             @stellaachenbach
           </a>
