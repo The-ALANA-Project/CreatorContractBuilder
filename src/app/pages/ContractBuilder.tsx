@@ -2603,7 +2603,7 @@ export default function ContractBuilder() {
                                     <p className="text-[10px] text-[#131718] font-bold">
                                       Not sure how to price your work?{" "}
                                       <a 
-                                        href="http://creatorpricing.com/" 
+                                        href="https://creatorpricing.com/" 
                                         target="_blank" 
                                         rel="noopener noreferrer"
                                         className="text-[#131718] underline hover:text-[#131718]/80 transition-colors"
