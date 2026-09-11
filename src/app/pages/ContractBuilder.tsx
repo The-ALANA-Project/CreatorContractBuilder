@@ -1,14 +1,14 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "@/app/components/ui/button";
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
 import { Label } from "@/app/components/ui/label";
 import { Checkbox } from "@/app/components/ui/checkbox";
-import { 
-  FileText, 
-  Download, 
-  ChevronDown, 
+import {
+  FileText,
+  Download,
+  ChevronDown,
   Upload,
   Briefcase,
   Package,
@@ -30,8 +30,8 @@ import {
   Scale,
   ShieldAlert,
   Gavel,
-  Check
-} from "lucide-react";
+  Check,
+} from "@/app/lib/icons";
 import { Link, useNavigate, useLocation } from "react-router";
 import jsPDF from "jspdf";
 import gsap from "gsap";
@@ -1013,6 +1013,40 @@ function CustomDropdown({ value, onChange, options, placeholder = "Select...", c
   );
 }
 
+function GlassButton({
+  onClick,
+  title,
+  children,
+}: {
+  onClick: () => void;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="relative flex overflow-hidden rounded-full shadow-[0_6px_6px_rgba(0,0,0,0.2),0_0_20px_rgba(0,0,0,0.1)] transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,2.2)] hover:shadow-[0_8px_8px_rgba(0,0,0,0.25),0_0_24px_rgba(0,0,0,0.15)] hover:scale-105">
+      <div
+        className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
+        style={{ backdropFilter: "blur(3px)", filter: "url(#glass-distortion)", isolation: "isolate" }}
+      />
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{ background: "rgba(255, 255, 255, 0.15)" }}
+      />
+      <div
+        className="absolute inset-0 z-[2] overflow-hidden rounded-full pointer-events-none"
+        style={{ boxShadow: "inset 2px 2px 1px 0 rgba(255,255,255,0.5), inset -1px -1px 1px 1px rgba(255,255,255,0.5)" }}
+      />
+      <button
+        onClick={onClick}
+        title={title}
+        className="relative z-[3] w-12 h-12 flex items-center justify-center text-foreground text-[20px]"
+      >
+        {children}
+      </button>
+    </div>
+  );
+}
+
 export default function ContractBuilder() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -1950,86 +1984,68 @@ export default function ContractBuilder() {
       </div>
     );
 
-    return <div className="font-['Work_Sans']">{sections_jsx}</div>;
+    return <div className="font-['Geist']">{sections_jsx}</div>;
   };
 
   return (
     <>
     <div ref={pageRef} className="min-h-screen bg-background text-foreground">
       {/* SVG Filter for Glass Distortion */}
-      <svg width="0" height="0" style={{ position: 'absolute' }}>
-        <defs>
-          <filter id="glass-distortion">
-            <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" />
-            <feDisplacementMap in="SourceGraphic" scale="2" />
-          </filter>
-        </defs>
+      <svg style={{ display: "none" }}>
+        <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+          <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="1" seed="5" result="turbulence" />
+          <feComponentTransfer in="turbulence" result="mapped">
+            <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+            <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+            <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+          </feComponentTransfer>
+          <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+          <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100" lightingColor="white" result="specLight">
+            <fePointLight x="-200" y="-200" z="300" />
+          </feSpecularLighting>
+          <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+          <feDisplacementMap in="SourceGraphic" in2="softMap" scale="150" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
       </svg>
 
       {/* Desktop Toolbar - Hidden on Mobile */}
       <div className="hidden lg:flex fixed top-40 left-6 z-20 flex-col gap-3" data-zoom-control="true">
-        {/* Home Button */}
-        <button
-          className="w-12 h-12 flex items-center justify-center bg-[#131718] text-[#FEE6EA] rounded-full shadow-[0_6px_6px_rgba(0,0,0,0.2),0_0_20px_rgba(0,0,0,0.1)] transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,2.2)] hover:scale-105 hover:shadow-[0_8px_8px_rgba(0,0,0,0.25),0_0_24px_rgba(0,0,0,0.15)]"
-          onClick={() => navigate('/builder')}
-          title="Home"
-        >
-          <Home className="w-5 h-5" />
-        </button>
+        <GlassButton onClick={() => navigate("/builder")} title="Home">
+          <Home />
+        </GlassButton>
 
-        {/* Upload Button */}
-        <button
-          className="w-12 h-12 flex items-center justify-center bg-[#131718] text-[#FEE6EA] rounded-full shadow-[0_6px_6px_rgba(0,0,0,0.2),0_0_20px_rgba(0,0,0,0.1)] transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,2.2)] hover:scale-105 hover:shadow-[0_8px_8px_rgba(0,0,0,0.25),0_0_24px_rgba(0,0,0,0.15)]"
-          onClick={() => {
-            document.getElementById('file-upload')?.click();
-          }}
-          title="Import JSON"
-        >
-          <Upload className="w-5 h-5" />
-        </button>
+        <GlassButton onClick={() => document.getElementById("file-upload")?.click()} title="Import JSON">
+          <Upload />
+        </GlassButton>
 
         {/* Download Button with Dropdown */}
         <div className="relative" ref={downloadMenuRef}>
-          <button
-            className="w-12 h-12 flex items-center justify-center bg-[#131718] text-[#FEE6EA] rounded-full shadow-[0_6px_6px_rgba(0,0,0,0.2),0_0_20px_rgba(0,0,0,0.1)] transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,2.2)] hover:scale-105 hover:shadow-[0_8px_8px_rgba(0,0,0,0.25),0_0_24px_rgba(0,0,0,0.15)]"
-            onClick={() => setShowDownloadMenu(!showDownloadMenu)}
-            title="Download"
-          >
-            <Download className="w-5 h-5" />
-          </button>
+          <GlassButton onClick={() => setShowDownloadMenu(!showDownloadMenu)} title="Export">
+            <Download />
+          </GlassButton>
 
-          {/* Dropdown Menu */}
           {showDownloadMenu && (
-            <div className="absolute top-0 left-14 md:left-14 right-auto md:right-auto z-30">
+            <div className="absolute top-0 left-14 z-30">
               <div className="bg-[#131718] rounded-2xl shadow-lg min-w-[200px] p-2 space-y-1">
                 <button
-                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded-xl transition-all duration-100 text-left"
-                  onClick={() => {
-                    exportJSON();
-                    setShowDownloadMenu(false);
-                  }}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded-xl transition-all duration-100 text-left text-[16px]"
+                  onClick={() => { exportJSON(); setShowDownloadMenu(false); }}
                 >
-                  <FileText className="w-4 h-4" />
+                  <FileText style={{ fontSize: "1rem" }} />
                   <span>Save Data (JSON)</span>
                 </button>
                 <button
-                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded-xl transition-all duration-100 text-left"
-                  onClick={() => {
-                    exportPDF();
-                    setShowDownloadMenu(false);
-                  }}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded-xl transition-all duration-100 text-left text-[16px]"
+                  onClick={() => { exportPDF(); setShowDownloadMenu(false); }}
                 >
-                  <Download className="w-4 h-4" />
+                  <Download style={{ fontSize: "1rem" }} />
                   <span>Export PDF</span>
                 </button>
                 <button
-                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded-xl transition-all duration-100 text-left"
-                  onClick={() => {
-                    exportMarkdown();
-                    setShowDownloadMenu(false);
-                  }}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded-xl transition-all duration-100 text-left text-[16px]"
+                  onClick={() => { exportMarkdown(); setShowDownloadMenu(false); }}
                 >
-                  <FileText className="w-4 h-4" />
+                  <FileText style={{ fontSize: "1rem" }} />
                   <span>Export Markdown</span>
                 </button>
               </div>
@@ -2037,23 +2053,16 @@ export default function ContractBuilder() {
           )}
         </div>
 
-        {/* Preview Toggle Button */}
-        <button
-          className="w-12 h-12 flex items-center justify-center bg-[#131718] text-[#FEE6EA] rounded-full shadow-[0_6px_6px_rgba(0,0,0,0.2),0_0_20px_rgba(0,0,0,0.1)] transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,2.2)] hover:scale-105 hover:shadow-[0_8px_8px_rgba(0,0,0,0.25),0_0_24px_rgba(0,0,0,0.15)]"
+        <GlassButton
           onClick={() => setViewMode(viewMode === "edit" ? "preview" : "edit")}
           title={viewMode === "edit" ? "Preview" : "Edit"}
         >
-          {viewMode === "edit" ? <Eye className="w-5 h-5" /> : <Edit3 className="w-5 h-5" />}
-        </button>
+          {viewMode === "edit" ? <Eye /> : <Edit3 />}
+        </GlassButton>
 
-        {/* Resources Button */}
-        <button
-          className="w-12 h-12 flex items-center justify-center bg-[#131718] text-[#FEE6EA] rounded-full shadow-[0_6px_6px_rgba(0,0,0,0.2),0_0_20px_rgba(0,0,0,0.1)] transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,2.2)] hover:scale-105 hover:shadow-[0_8px_8px_rgba(0,0,0,0.25),0_0_24px_rgba(0,0,0,0.15)]"
-          onClick={() => navigate('/resources')}
-          title="Resources"
-        >
-          <BookOpen className="w-5 h-5" />
-        </button>
+        <GlassButton onClick={() => navigate("/resources")} title="Resources">
+          <BookOpen />
+        </GlassButton>
       </div>
 
       {/* Header */}
@@ -3672,15 +3681,15 @@ export default function ContractBuilder() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Button onClick={exportJSON} variant="default" className="w-full sm:flex-1 gap-2">
-                <Download className="h-4 w-4" />
+                <Download style={{ fontSize: "1rem" }} />
                 Save Data (JSON)
               </Button>
               <Button onClick={exportPDF} variant="outline" className="border-border w-full sm:flex-1 gap-2">
-                <FileText className="h-4 w-4" />
+                <FileText style={{ fontSize: "1rem" }} />
                 Download PDF
               </Button>
               <Button onClick={exportMarkdown} variant="outline" className="border-border w-full sm:flex-1 gap-2">
-                <FileText className="h-4 w-4" />
+                <FileText style={{ fontSize: "1rem" }} />
                 Download Markdown
               </Button>
             </div>
@@ -3720,70 +3729,84 @@ export default function ContractBuilder() {
     </div>
 
       {/* Mobile Bottom Navigation - Outside pageRef so fixed positioning is never broken by transforms */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#131718] border-t border-[#131718] pb-safe">
-          <div className="flex items-center justify-around py-3 px-4">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50">
+        <div className="relative overflow-hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+          {/* Layer 1: Backdrop blur + SVG distortion */}
+          <div
+            className="absolute inset-0 z-0 pointer-events-none"
+            style={{ backdropFilter: "blur(12px)", filter: "url(#glass-distortion)", isolation: "isolate" }}
+          />
+          {/* Layer 2: Rose tint */}
+          <div
+            className="absolute inset-0 z-[1] pointer-events-none"
+            style={{ background: "rgba(254, 230, 234, 0.88)" }}
+          />
+          {/* Layer 3: Top shine + outer shadow */}
+          <div
+            className="absolute inset-0 z-[2] pointer-events-none"
+            style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.7), 0 -4px 24px rgba(0,0,0,0.08)" }}
+          />
+
+          {/* Layer 4: Content */}
+          <div className="relative z-[3] flex items-center justify-around py-3 px-4">
             {/* Home */}
             <button
-              className="flex flex-col items-center gap-1 text-[#FEE6EA] active:scale-95 transition-transform"
-              onClick={() => navigate('/builder')}
+              className="flex flex-col items-center gap-1 text-[#131718] active:scale-95 transition-transform text-[20px]"
+              onClick={() => navigate("/builder")}
             >
-              <Home className="w-5 h-5" />
-              <span className="text-[10px]">Home</span>
+              <Home />
+              <span className="text-[10px] font-medium">Home</span>
             </button>
 
             {/* Upload */}
             <button
-              className="flex flex-col items-center gap-1 text-[#FEE6EA] active:scale-95 transition-transform"
-              onClick={() => document.getElementById('file-upload')?.click()}
+              className="flex flex-col items-center gap-1 text-[#131718] active:scale-95 transition-transform text-[20px]"
+              onClick={() => document.getElementById("file-upload")?.click()}
             >
-              <Upload className="w-5 h-5" />
-              <span className="text-[10px]">Import</span>
+              <Upload />
+              <span className="text-[10px] font-medium">Import</span>
             </button>
 
             {/* Download */}
             <div className="relative" ref={mobileDownloadMenuRef}>
               <button
-                className="flex flex-col items-center gap-1 text-[#FEE6EA] active:scale-95 transition-transform"
+                className="flex flex-col items-center gap-1 text-[#131718] active:scale-95 transition-transform text-[20px]"
                 onClick={() => setShowDownloadMenu(!showDownloadMenu)}
               >
-                <Download className="w-5 h-5" />
-                <span className="text-[10px]">Export</span>
+                <Download />
+                <span className="text-[10px] font-medium">Export</span>
               </button>
-              
-              {/* Mobile Download Menu */}
+
               {showDownloadMenu && (
-                <div className="absolute bottom-full mb-2 right-0 min-w-[180px]">
-                  <div className="bg-[#131718] rounded-2xl shadow-lg p-2 space-y-1 border border-[#FEE6EA]/20">
-                    <button
-                      className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded-xl transition-all duration-100 text-left"
-                      onClick={() => {
-                        exportJSON();
-                        setShowDownloadMenu(false);
-                      }}
-                    >
-                      <FileText className="w-4 h-4" />
-                      <span>JSON</span>
-                    </button>
-                    <button
-                      className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded-xl transition-all duration-100 text-left"
-                      onClick={() => {
-                        exportPDF();
-                        setShowDownloadMenu(false);
-                      }}
-                    >
-                      <FileText className="w-4 h-4" />
-                      <span>PDF</span>
-                    </button>
-                    <button
-                      className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded-xl transition-all duration-100 text-left"
-                      onClick={() => {
-                        exportMarkdown();
-                        setShowDownloadMenu(false);
-                      }}
-                    >
-                      <FileText className="w-4 h-4" />
-                      <span>Markdown</span>
-                    </button>
+                <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 min-w-[190px]">
+                  {/* Glass popup */}
+                  <div className="relative overflow-hidden rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)]">
+                    <div className="absolute inset-0 z-0 pointer-events-none" style={{ backdropFilter: "blur(12px)", filter: "url(#glass-distortion)", isolation: "isolate" }} />
+                    <div className="absolute inset-0 z-[1] pointer-events-none" style={{ background: "rgba(254, 230, 234, 0.92)" }} />
+                    <div className="absolute inset-0 z-[2] pointer-events-none rounded-2xl" style={{ boxShadow: "inset 2px 2px 1px rgba(255,255,255,0.6), inset -1px -1px 1px rgba(255,255,255,0.4)" }} />
+                    <div className="relative z-[3] p-2 space-y-0.5">
+                      <button
+                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#131718]/80 hover:text-[#131718] hover:bg-white/40 rounded-xl transition-all duration-100 text-left"
+                        onClick={() => { exportJSON(); setShowDownloadMenu(false); }}
+                      >
+                        <FileText style={{ fontSize: "1rem" }} />
+                        <span>Save JSON</span>
+                      </button>
+                      <button
+                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#131718]/80 hover:text-[#131718] hover:bg-white/40 rounded-xl transition-all duration-100 text-left"
+                        onClick={() => { exportPDF(); setShowDownloadMenu(false); }}
+                      >
+                        <Download style={{ fontSize: "1rem" }} />
+                        <span>Export PDF</span>
+                      </button>
+                      <button
+                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#131718]/80 hover:text-[#131718] hover:bg-white/40 rounded-xl transition-all duration-100 text-left"
+                        onClick={() => { exportMarkdown(); setShowDownloadMenu(false); }}
+                      >
+                        <FileText style={{ fontSize: "1rem" }} />
+                        <span>Markdown</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
@@ -3791,23 +3814,24 @@ export default function ContractBuilder() {
 
             {/* Preview Toggle */}
             <button
-              className="flex flex-col items-center gap-1 text-[#FEE6EA] active:scale-95 transition-transform"
+              className="flex flex-col items-center gap-1 text-[#131718] active:scale-95 transition-transform text-[20px]"
               onClick={() => setViewMode(viewMode === "edit" ? "preview" : "edit")}
             >
-              {viewMode === "edit" ? <Eye className="w-5 h-5" /> : <Edit3 className="w-5 h-5" />}
-              <span className="text-[10px]">{viewMode === "edit" ? "Preview" : "Edit"}</span>
+              {viewMode === "edit" ? <Eye /> : <Edit3 />}
+              <span className="text-[10px] font-medium">{viewMode === "edit" ? "Preview" : "Edit"}</span>
             </button>
 
             {/* Resources */}
             <button
-              className="flex flex-col items-center gap-1 text-[#FEE6EA] active:scale-95 transition-transform"
-              onClick={() => navigate('/resources')}
+              className="flex flex-col items-center gap-1 text-[#131718] active:scale-95 transition-transform text-[20px]"
+              onClick={() => navigate("/resources")}
             >
-              <BookOpen className="w-5 h-5" />
-              <span className="text-[10px]">Resources</span>
+              <BookOpen />
+              <span className="text-[10px] font-medium">Resources</span>
             </button>
           </div>
         </div>
+      </div>
     </>
   );
 }

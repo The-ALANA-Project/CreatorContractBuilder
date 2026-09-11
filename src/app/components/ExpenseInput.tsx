@@ -1,7 +1,7 @@
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
-import { Trash2, Plus } from "lucide-react";
+import { Trash2, Plus } from "@/app/lib/icons";
 
 export interface Expense {
   id: string;

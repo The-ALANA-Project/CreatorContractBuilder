@@ -1,7 +1,7 @@
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/app/components/ui/tooltip";
-import { Info } from "lucide-react";
+import { Info } from "@/app/lib/icons";
 
 export interface IncomeSettings {
   taxRate: number;

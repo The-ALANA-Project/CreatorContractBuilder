@@ -4,7 +4,7 @@ import { IncomeCalculator, type IncomeSettings } from "@/app/components/IncomeCa
 import { ServicePricing, type ServicePricingRef } from "@/app/components/ServicePricing";
 import { CreatorType, type CreatorTypeData } from "@/app/components/CreatorType";
 import { Button } from "@/app/components/ui/button";
-import { FileImage, FileText, Upload, Download, ChevronDown } from "lucide-react";
+import { FileImage, FileText, Upload, Download, ChevronDown } from "@/app/lib/icons";
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Link } from "react-router";
 

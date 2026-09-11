@@ -2,7 +2,7 @@ import { useState, useRef, useImperativeHandle, forwardRef } from "react";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
-import { Download, FileImage, FileText, Plus, Trash2 } from "lucide-react";
+import { Download, FileImage, FileText, Plus, Trash2 } from "@/app/lib/icons";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { CreatorTypeData } from "./CreatorType";
@@ -746,7 +746,7 @@ export const ServicePricing = forwardRef<ServicePricingRef, ServicePricingProps>
               width: '800px', 
               padding: '48px', 
               backgroundColor: '#FEE6EA',
-              fontFamily: 'Work Sans, system-ui, sans-serif'
+              fontFamily: 'Geist, system-ui, sans-serif'
             }}>
               {/* Header */}
               <div style={{ marginBottom: '32px' }}>
@@ -1011,7 +1011,7 @@ export const ServicePricing = forwardRef<ServicePricingRef, ServicePricingProps>
               width: '800px', 
               padding: '48px', 
               backgroundColor: '#FEE6EA',
-              fontFamily: 'Work Sans, system-ui, sans-serif'
+              fontFamily: 'Geist, system-ui, sans-serif'
             }}>
               {/* Header */}
               <div style={{ marginBottom: '32px' }}>

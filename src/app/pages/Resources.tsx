@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Button } from "@/app/components/ui/button";
-import { ExternalLink, ArrowLeft, BookOpen, FileText, Users, Shield, Zap, Home } from "lucide-react";
+import { ExternalLink, ArrowLeft, BookOpen, FileText, Users, Shield, Zap, Home } from "@/app/lib/icons";
 import { Link, useNavigate } from "react-router";
 
 export default function Resources() {
@@ -75,16 +75,38 @@ export default function Resources() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* SVG Filter for Glass Distortion */}
+      <svg style={{ display: "none" }}>
+        <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+          <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="1" seed="5" result="turbulence" />
+          <feComponentTransfer in="turbulence" result="mapped">
+            <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+            <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+            <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+          </feComponentTransfer>
+          <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+          <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100" lightingColor="white" result="specLight">
+            <fePointLight x="-200" y="-200" z="300" />
+          </feSpecularLighting>
+          <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+          <feDisplacementMap in="SourceGraphic" in2="softMap" scale="150" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </svg>
+
       {/* Toolbar */}
       <div className="fixed top-40 left-6 z-20 flex flex-col gap-3" data-zoom-control="true">
-        {/* Home/Contract Builder Button */}
-        <button
-          className="w-12 h-12 flex items-center justify-center bg-[#131718] text-[#FEE6EA] rounded-full shadow-[0_6px_6px_rgba(0,0,0,0.2),0_0_20px_rgba(0,0,0,0.1)] transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,2.2)] hover:scale-105 hover:shadow-[0_8px_8px_rgba(0,0,0,0.25),0_0_24px_rgba(0,0,0,0.15)]"
-          onClick={() => navigate('/builder')}
-          title="Contract Builder"
-        >
-          <Home className="w-5 h-5" />
-        </button>
+        <div className="relative flex overflow-hidden rounded-full shadow-[0_6px_6px_rgba(0,0,0,0.2),0_0_20px_rgba(0,0,0,0.1)] transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,2.2)] hover:shadow-[0_8px_8px_rgba(0,0,0,0.25),0_0_24px_rgba(0,0,0,0.15)] hover:scale-105">
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" style={{ backdropFilter: "blur(3px)", filter: "url(#glass-distortion)", isolation: "isolate" }} />
+          <div className="absolute inset-0 z-[1] pointer-events-none" style={{ background: "rgba(255, 255, 255, 0.15)" }} />
+          <div className="absolute inset-0 z-[2] overflow-hidden rounded-full pointer-events-none" style={{ boxShadow: "inset 2px 2px 1px 0 rgba(255,255,255,0.5), inset -1px -1px 1px 1px rgba(255,255,255,0.5)" }} />
+          <button
+            onClick={() => navigate("/builder")}
+            title="Contract Builder"
+            className="relative z-[3] w-12 h-12 flex items-center justify-center text-foreground text-[20px]"
+          >
+            <Home />
+          </button>
+        </div>
       </div>
 
       {/* Header */}
@@ -112,11 +134,9 @@ export default function Resources() {
       <main className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 md:py-12 mt-3 sm:mt-0">
         <div className="max-w-4xl mx-auto space-y-8">
           {resources.map((section) => {
-            const IconComponent = section.icon;
             return (
               <div key={section.category}>
                 <div className="flex items-center gap-3 mb-6">
-                  <IconComponent className="h-6 w-6 text-primary" />
                   <h2 className="font-semibold text-[25px]">{section.category}</h2>
                 </div>
 

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Card, CardContent } from "@/app/components/ui/card";
-import { Palette, Package, Video, Lightbulb } from "lucide-react";
+import { Palette, Package, Video, Lightbulb } from "@/app/lib/icons";
 
 export type CreatorTypeValue = "digital" | "physical" | "content";
 

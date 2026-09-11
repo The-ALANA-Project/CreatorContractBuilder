@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { X } from "lucide-react";
+import { X } from "@/app/lib/icons";
 
 export function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
@@ -101,7 +101,7 @@ export function CookieBanner() {
                   className="text-sm mb-1"
                   style={{
                     color: "#FEE6EA",
-                    fontFamily: "'Work Sans', sans-serif",
+                    fontFamily: "'Geist', sans-serif",
                   }}
                 >
                   We use cookies
@@ -111,7 +111,7 @@ export function CookieBanner() {
                   style={{
                     color: "rgba(254, 230, 234, 0.7)",
                     lineHeight: 1.625,
-                    fontFamily: "'Work Sans', sans-serif",
+                    fontFamily: "'Geist', sans-serif",
                   }}
                 >
                   This site uses Google Analytics and saves your contract data
@@ -155,7 +155,7 @@ export function CookieBanner() {
                   color: "#FEE6EA",
                   border: "1px solid #FEE6EA",
                   fontWeight: 500,
-                  fontFamily: "'Work Sans', sans-serif",
+                  fontFamily: "'Geist', sans-serif",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = "#FEE6EA";
@@ -176,7 +176,7 @@ export function CookieBanner() {
                   color: "#131718",
                   border: "1px solid #FEE6EA",
                   fontWeight: 500,
-                  fontFamily: "'Work Sans', sans-serif",
+                  fontFamily: "'Geist', sans-serif",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = "#131718";
