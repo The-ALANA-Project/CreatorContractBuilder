@@ -971,7 +971,7 @@ function CustomDropdown({ value, onChange, options, placeholder = "Select...", c
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full px-3 py-2 text-sm border rounded-lg bg-white text-left flex items-center justify-between transition-all ${
+        className={`w-full px-3 py-2 text-sm border rounded bg-white text-left flex items-center justify-between transition-all ${
           isOpen
             ? "border-[#131718]"
             : "border-[#131718]/20"
@@ -2026,23 +2026,23 @@ export default function ContractBuilder() {
 
           {showDownloadMenu && (
             <div className="absolute top-0 left-14 z-30">
-              <div className="bg-[#131718] rounded-2xl shadow-lg min-w-[200px] p-2 space-y-1">
+              <div className="bg-[#131718] rounded-lg shadow-lg min-w-[200px] p-2 space-y-1">
                 <button
-                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded-xl transition-all duration-100 text-left text-[16px]"
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded transition-all duration-100 text-left text-[16px]"
                   onClick={() => { exportJSON(); setShowDownloadMenu(false); }}
                 >
                   <FileText style={{ fontSize: "1rem" }} />
                   <span>Save Data (JSON)</span>
                 </button>
                 <button
-                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded-xl transition-all duration-100 text-left text-[16px]"
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded transition-all duration-100 text-left text-[16px]"
                   onClick={() => { exportPDF(); setShowDownloadMenu(false); }}
                 >
                   <Download style={{ fontSize: "1rem" }} />
                   <span>Export PDF</span>
                 </button>
                 <button
-                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded-xl transition-all duration-100 text-left text-[16px]"
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#FEE6EA]/90 hover:text-[#FEE6EA] hover:bg-[#FEE6EA]/10 rounded transition-all duration-100 text-left text-[16px]"
                   onClick={() => { exportMarkdown(); setShowDownloadMenu(false); }}
                 >
                   <FileText style={{ fontSize: "1rem" }} />
@@ -2386,7 +2386,7 @@ export default function ContractBuilder() {
               <div className="flex gap-2">
                 <button
                   onClick={() => setViewMode("edit")}
-                  className={`flex-1 flex items-center justify-center py-3 px-4 rounded-lg transition-all duration-300 ${
+                  className={`flex-1 flex items-center justify-center py-3 px-4 rounded transition-all duration-300 ${
                     viewMode === "edit"
                       ? "bg-[#FEE6EA] text-[#131718] shadow-sm"
                       : "bg-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20"
@@ -2396,7 +2396,7 @@ export default function ContractBuilder() {
                 </button>
                 <button
                   onClick={() => setViewMode("preview")}
-                  className={`flex-1 flex items-center justify-center py-3 px-4 rounded-lg transition-all duration-300 ${
+                  className={`flex-1 flex items-center justify-center py-3 px-4 rounded transition-all duration-300 ${
                     viewMode === "preview"
                       ? "bg-[#FEE6EA] text-[#131718] shadow-sm"
                       : "bg-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20"
@@ -2551,7 +2551,7 @@ export default function ContractBuilder() {
                                           paymentTerms: getTemplateText("paymentTerms", prev.contractType, { ...prev, paymentSchedule: newSchedule }),
                                         }));
                                       }}
-                                      className={`group p-3 text-xs border rounded-lg transition-all text-left ${
+                                      className={`group p-3 text-xs border rounded transition-all text-left ${
                                         contractData.paymentSchedule === "100% upfront"
                                           ? "bg-[#FEE6EA] border-[#131718] text-[#131718]"
                                           : "bg-[#131718] border-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20 hover:border-[#131718] hover:text-[#131718]"
@@ -2569,7 +2569,7 @@ export default function ContractBuilder() {
                                           paymentTerms: getTemplateText("paymentTerms", prev.contractType, { ...prev, paymentSchedule: newSchedule }),
                                         }));
                                       }}
-                                      className={`group p-3 text-xs border rounded-lg transition-all text-left ${
+                                      className={`group p-3 text-xs border rounded transition-all text-left ${
                                         contractData.paymentSchedule === "50% upfront, 50% on delivery"
                                           ? "bg-[#FEE6EA] border-[#131718] text-[#131718]"
                                           : "bg-[#131718] border-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20 hover:border-[#131718] hover:text-[#131718]"
@@ -2587,7 +2587,7 @@ export default function ContractBuilder() {
                                           paymentTerms: getTemplateText("paymentTerms", prev.contractType, { ...prev, paymentSchedule: newSchedule }),
                                         }));
                                       }}
-                                      className={`group p-3 text-xs border rounded-lg transition-all text-left ${
+                                      className={`group p-3 text-xs border rounded transition-all text-left ${
                                         contractData.paymentSchedule === "Net 30 payment terms"
                                           ? "bg-[#FEE6EA] border-[#131718] text-[#131718]"
                                           : "bg-[#131718] border-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20 hover:border-[#131718] hover:text-[#131718]"
@@ -2599,7 +2599,7 @@ export default function ContractBuilder() {
                                   </div>
                                   
                                   {/* Pricing Help Link */}
-                                  <div className="mb-3 p-2 bg-[#FEE6EA] rounded-lg">
+                                  <div className="mb-3 p-2 bg-[#FEE6EA] rounded">
                                     <p className="text-[10px] text-[#131718] font-bold">
                                       Not sure how to price your work?{" "}
                                       <a 
@@ -2787,7 +2787,7 @@ export default function ContractBuilder() {
                                       onClick={() => {
                                         updateData("rightsUsage", `Upon full payment, ${contractData.creatorName || "[YOUR_NAME]"} retains full copyright ownership. ${contractData.clientName || "[CLIENT_NAME]"} receives a limited, non-exclusive license to use the work for the agreed purpose only. [NON-EXCLUSIVE means you keep the right to sell or license this same work to other clients. Delete this explanation before sending.]\n\nUsage restrictions:\n• Work may not be modified without permission\n• Work may not be resold or sublicensed\n• Attribution required in all uses\n• License expires after 1 year\n\nCreator retains:\n• Full copyright and moral rights\n• Right to sell to other clients\n• Right to display in portfolio\n• Right to create derivatives`);
                                       }}
-                                      className={`group p-3 text-xs border rounded-lg transition-all text-left ${
+                                      className={`group p-3 text-xs border rounded transition-all text-left ${
                                         contractData.rightsUsage?.includes("limited, non-exclusive license")
                                           ? "bg-[#FEE6EA] border-[#131718] text-[#131718]"
                                           : "bg-[#131718] border-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20 hover:border-[#131718] hover:text-[#131718]"
@@ -2800,7 +2800,7 @@ export default function ContractBuilder() {
                                       onClick={() => {
                                         updateData("rightsUsage", getTemplateText("rightsUsage", contractData.contractType, contractData));
                                       }}
-                                      className={`group p-3 text-xs border rounded-lg transition-all text-left ${
+                                      className={`group p-3 text-xs border rounded transition-all text-left ${
                                         !contractData.rightsUsage?.includes("limited, non-exclusive license") && 
                                         !contractData.rightsUsage?.includes("full, exclusive, unlimited rights") &&
                                         contractData.rightsUsage
@@ -2821,7 +2821,7 @@ export default function ContractBuilder() {
                                       onClick={() => {
                                         updateData("rightsUsage", `Upon full payment, ${contractData.clientName || "[CLIENT_NAME]"} receives full, exclusive, unlimited rights to the work including copyright ownership. [FULL TRANSFER / BUYOUT means the client owns everything - you cannot use, display, or sell this work again. Only choose this for premium pricing. Delete this explanation before sending.]\n\nRights transferred:\n• Complete copyright ownership\n• Worldwide, perpetual usage\n• Right to modify without permission\n• Right to resell or sublicense\n• No attribution required\n\nCreator retains:\n• Right to display work in portfolio (with credit)\n• Cannot create similar work for competitors for 1 year`);
                                       }}
-                                      className={`group p-3 text-xs border rounded-lg transition-all text-left ${
+                                      className={`group p-3 text-xs border rounded transition-all text-left ${
                                         contractData.rightsUsage?.includes("full, exclusive, unlimited rights")
                                           ? "bg-[#FEE6EA] border-[#131718] text-[#131718]"
                                           : "bg-[#131718] border-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20 hover:border-[#131718] hover:text-[#131718]"
@@ -2965,7 +2965,7 @@ export default function ContractBuilder() {
                                         updateData("revisionsDefinition", "A revision is a single set of changes submitted together as one batch. New concepts, scope changes, or style direction changes do not count as revisions and require a new agreement.");
                                         updateData("revisionsOverflow", `Additional revisions available at ${getCurrencySymbol(contractData.currency)}[AMOUNT] per round. Each additional round follows the same scope rules.`);
                                       }}
-                                      className={`group p-3 text-xs border rounded-lg transition-all text-left ${
+                                      className={`group p-3 text-xs border rounded transition-all text-left ${
                                         contractData.revisionsLimit === "1 round of revisions"
                                           ? "bg-[#FEE6EA] border-[#131718] text-[#131718]"
                                           : "bg-[#131718] border-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20 hover:border-[#131718] hover:text-[#131718]"
@@ -2981,7 +2981,7 @@ export default function ContractBuilder() {
                                         updateData("revisionsDefinition", "A revision is a consolidated set of feedback and requested changes delivered as one batch. Each round allows reasonable modifications to the existing deliverables. Requests that significantly alter the project direction, concept, or scope are considered new work.");
                                         updateData("revisionsOverflow", `Additional revisions available at ${getCurrencySymbol(contractData.currency)}[AMOUNT] per round, subject to Creator availability.`);
                                       }}
-                                      className={`group p-3 text-xs border rounded-lg transition-all text-left ${
+                                      className={`group p-3 text-xs border rounded transition-all text-left ${
                                         contractData.revisionsLimit === "2 rounds of revisions"
                                           ? "bg-[#FEE6EA] border-[#131718] text-[#131718]"
                                           : "bg-[#131718] border-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20 hover:border-[#131718] hover:text-[#131718]"
@@ -2997,7 +2997,7 @@ export default function ContractBuilder() {
                                         updateData("revisionsDefinition", "A revision is any set of requested changes to existing deliverables. Each round may include multiple items of feedback. Feedback should be consolidated into a single document or message per round.");
                                         updateData("revisionsOverflow", `Additional revisions available at ${getCurrencySymbol(contractData.currency)}[AMOUNT] per round or on a case-by-case basis.`);
                                       }}
-                                      className={`group p-3 text-xs border rounded-lg transition-all text-left ${
+                                      className={`group p-3 text-xs border rounded transition-all text-left ${
                                         contractData.revisionsLimit === "3 rounds of revisions"
                                           ? "bg-[#FEE6EA] border-[#131718] text-[#131718]"
                                           : "bg-[#131718] border-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20 hover:border-[#131718] hover:text-[#131718]"
@@ -3009,7 +3009,7 @@ export default function ContractBuilder() {
                                   </div>
 
                                   {/* Educational Note */}
-                                  <div className="mb-3 p-2 bg-[#FEE6EA] rounded-lg">
+                                  <div className="mb-3 p-2 bg-[#FEE6EA] rounded">
                                     <p className="text-[10px] text-[#131718]">
                                       <span className="font-bold">Why this matters:</span> Without a clear revisions policy, clients can request unlimited changes and turn a small project into weeks of unpaid work. Always define what counts as a "revision" versus "new work" so you're protected from scope creep.
                                     </p>
@@ -3107,7 +3107,7 @@ export default function ContractBuilder() {
                                         updateData("cancellationNotice", "14 days written notice required");
                                         updateData("cancellationFee", "100% of project fee if work has started. 50% deposit non-refundable under all circumstances.");
                                       }}
-                                      className={`group p-3 text-xs border rounded-lg transition-all text-left ${
+                                      className={`group p-3 text-xs border rounded transition-all text-left ${
                                         contractData.cancellationNotice === "14 days written notice required"
                                           ? "bg-[#FEE6EA] border-[#131718] text-[#131718]"
                                           : "bg-[#131718] border-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20 hover:border-[#131718] hover:text-[#131718]"
@@ -3121,7 +3121,7 @@ export default function ContractBuilder() {
                                         updateData("cancellationNotice", getTemplateText("cancellationNotice", contractData.contractType, contractData));
                                         updateData("cancellationFee", getTemplateText("cancellationFee", contractData.contractType, contractData));
                                       }}
-                                      className={`group p-3 text-xs border rounded-lg transition-all text-left ${
+                                      className={`group p-3 text-xs border rounded transition-all text-left ${
                                         contractData.cancellationNotice === getTemplateText("cancellationNotice", contractData.contractType, contractData)
                                           ? "bg-[#FEE6EA] border-[#131718] text-[#131718]"
                                           : "bg-[#131718] border-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20 hover:border-[#131718] hover:text-[#131718]"
@@ -3135,7 +3135,7 @@ export default function ContractBuilder() {
                                         updateData("cancellationNotice", "3 business days notice");
                                         updateData("cancellationFee", "Deposit refundable minus 10% processing fee if cancelled before work begins. Pro-rated fee based on work completed if cancelled mid-project.");
                                       }}
-                                      className={`group p-3 text-xs border rounded-lg transition-all text-left ${
+                                      className={`group p-3 text-xs border rounded transition-all text-left ${
                                         contractData.cancellationNotice === "3 business days notice"
                                           ? "bg-[#FEE6EA] border-[#131718] text-[#131718]"
                                           : "bg-[#131718] border-[#131718]/30 text-[#FEE6EA] hover:bg-[#FEE6EA]/20 hover:border-[#131718] hover:text-[#131718]"
@@ -3200,7 +3200,7 @@ export default function ContractBuilder() {
                                   </div>
                                   
                                   {/* Confidentiality Subclauses */}
-                                  <div className="space-y-2 mb-4 p-3 bg-[#FEE6EA] rounded-lg border border-[#131718]">
+                                  <div className="space-y-2 mb-4 p-3 bg-[#FEE6EA] rounded border border-[#131718]">
                                     <div className="flex items-start space-x-2">
                                       <Checkbox
                                         id="defineConfidential"
@@ -3780,27 +3780,27 @@ export default function ContractBuilder() {
               {showDownloadMenu && (
                 <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 min-w-[190px]">
                   {/* Glass popup */}
-                  <div className="relative overflow-hidden rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)]">
+                  <div className="relative overflow-hidden rounded-lg shadow-[0_8px_32px_rgba(0,0,0,0.15)]">
                     <div className="absolute inset-0 z-0 pointer-events-none" style={{ backdropFilter: "blur(12px)", filter: "url(#glass-distortion)", isolation: "isolate" }} />
                     <div className="absolute inset-0 z-[1] pointer-events-none" style={{ background: "rgba(254, 230, 234, 0.92)" }} />
-                    <div className="absolute inset-0 z-[2] pointer-events-none rounded-2xl" style={{ boxShadow: "inset 2px 2px 1px rgba(255,255,255,0.6), inset -1px -1px 1px rgba(255,255,255,0.4)" }} />
+                    <div className="absolute inset-0 z-[2] pointer-events-none rounded-lg" style={{ boxShadow: "inset 2px 2px 1px rgba(255,255,255,0.6), inset -1px -1px 1px rgba(255,255,255,0.4)" }} />
                     <div className="relative z-[3] p-2 space-y-0.5">
                       <button
-                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#131718]/80 hover:text-[#131718] hover:bg-white/40 rounded-xl transition-all duration-100 text-left"
+                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#131718]/80 hover:text-[#131718] hover:bg-white/40 rounded transition-all duration-100 text-left"
                         onClick={() => { exportJSON(); setShowDownloadMenu(false); }}
                       >
                         <FileText style={{ fontSize: "1rem" }} />
                         <span>Save JSON</span>
                       </button>
                       <button
-                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#131718]/80 hover:text-[#131718] hover:bg-white/40 rounded-xl transition-all duration-100 text-left"
+                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#131718]/80 hover:text-[#131718] hover:bg-white/40 rounded transition-all duration-100 text-left"
                         onClick={() => { exportPDF(); setShowDownloadMenu(false); }}
                       >
                         <Download style={{ fontSize: "1rem" }} />
                         <span>Export PDF</span>
                       </button>
                       <button
-                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#131718]/80 hover:text-[#131718] hover:bg-white/40 rounded-xl transition-all duration-100 text-left"
+                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#131718]/80 hover:text-[#131718] hover:bg-white/40 rounded transition-all duration-100 text-left"
                         onClick={() => { exportMarkdown(); setShowDownloadMenu(false); }}
                       >
                         <FileText style={{ fontSize: "1rem" }} />

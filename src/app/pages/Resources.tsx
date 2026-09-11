@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Button } from "@/app/components/ui/button";
-import { ExternalLink, ArrowLeft, BookOpen, FileText, Users, Shield, Zap, Home } from "@/app/lib/icons";
+import { ExternalLink, Home } from "@/app/lib/icons";
 import { Link, useNavigate } from "react-router";
 
 export default function Resources() {
@@ -9,7 +9,6 @@ export default function Resources() {
   const resources = [
     {
       category: "Help",
-      icon: Shield,
       items: [
         {
           title: "HateAid",
@@ -22,7 +21,6 @@ export default function Resources() {
     },
     {
       category: "Platforms",
-      icon: Zap,
       items: [
         {
           title: "Meet With",
@@ -42,7 +40,6 @@ export default function Resources() {
     },
     {
       category: "Tools",
-      icon: FileText,
       items: [
         {
           title: "Freelance Rate Guide",
@@ -173,9 +170,9 @@ export default function Resources() {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              <Button className="w-full sm:w-auto">
+                              <Button className="w-full sm:w-auto gap-2">
                                 {section.category === "Help" ? "Learn More" : section.category === "Platforms" ? "Visit Platform" : "Visit Tool"}
-                                
+                                <ExternalLink style={{ fontSize: "0.875rem" }} />
                               </Button>
                             </a>
                           </div>
@@ -199,19 +196,19 @@ export default function Resources() {
       {/* Footer */}
       <footer className="mt-3 sm:mt-4 text-center text-xs sm:text-sm text-muted-foreground px-[16px] pt-[0px] pb-[16px]">
         <p>
-          Share this calculator, use it, and consider{' '}
-          <a 
-            href="https://ko-fi.com/stellaachenbach" 
-            target="_blank" 
+          Found something useful? Consider{' '}
+          <a
+            href="https://ko-fi.com/stellaachenbach"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-primary hover:underline font-bold"
           >
             donating
           </a>
-          {' '}if you found it helpful.
+          {' '}to support this project.
         </p>
         <p className="mt-2">
-          Made with 💜 by{' '}
+          Curated by{' '}
           <a 
             href="https://www.linkedin.com/in/stella-achenbach/" 
             target="_blank" 

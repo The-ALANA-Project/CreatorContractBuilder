@@ -416,7 +416,7 @@ export const ServicePricing = forwardRef<ServicePricingRef, ServicePricingProps>
                     const val = parseFloat(e.target.value);
                     if (!isNaN(val)) onMarkupChange(Math.max(0, Math.min(100, val)));
                   }}
-                  className="w-20 px-3 py-2 bg-input-background border border-border rounded-lg text-center text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="w-20 px-3 py-2 bg-input-background border border-border rounded text-center text-sm focus:outline-none focus:ring-1 focus:ring-primary"
                 />
                 <span className="text-sm text-muted-foreground min-w-[20px]">%</span>
               </div>

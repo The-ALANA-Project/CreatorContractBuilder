@@ -149,7 +149,7 @@ export function CookieBanner() {
             <div className="flex items-center gap-3 md:flex-shrink-0">
               <button
                 onClick={handleDecline}
-                className="flex-1 md:flex-none py-2 px-5 text-xs whitespace-nowrap rounded-lg transition-all"
+                className="flex-1 md:flex-none py-2 px-5 text-xs whitespace-nowrap rounded transition-all"
                 style={{
                   backgroundColor: "#131718",
                   color: "#FEE6EA",
@@ -170,7 +170,7 @@ export function CookieBanner() {
               </button>
               <button
                 onClick={handleAccept}
-                className="flex-1 md:flex-none py-2 px-5 text-xs whitespace-nowrap rounded-lg transition-all"
+                className="flex-1 md:flex-none py-2 px-5 text-xs whitespace-nowrap rounded transition-all"
                 style={{
                   backgroundColor: "#FEE6EA",
                   color: "#131718",

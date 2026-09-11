@@ -239,7 +239,7 @@ export function CreatorType({ data, onDataChange, targetIncome, billableHours, s
                           <button
                             onClick={() => updateData({ experienceLevel: item.level as any })}
                             className={`
-                              px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 border
+                              px-3 py-2 rounded text-xs sm:text-sm font-medium transition-all duration-200 border
                               ${data.experienceLevel === item.level
                                 ? 'bg-primary text-primary-foreground shadow-md border-primary'
                                 : 'bg-[#FEE6EA] text-[#131718] border-transparent hover:border-[#131718]'
@@ -270,7 +270,7 @@ export function CreatorType({ data, onDataChange, targetIncome, billableHours, s
                           <button
                             onClick={() => updateData({ projectTerms: item.term as any })}
                             className={`
-                              px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 border
+                              px-3 py-2 rounded text-xs sm:text-sm font-medium transition-all duration-200 border
                               ${data.projectTerms === item.term
                                 ? 'bg-primary text-primary-foreground shadow-md border-primary'
                                 : 'bg-[#FEE6EA] text-[#131718] border-transparent hover:border-[#131718]'
@@ -400,7 +400,7 @@ export function CreatorType({ data, onDataChange, targetIncome, billableHours, s
                         <button
                           onClick={() => updateData({ salesChannel: "wholesale" })}
                           className={`
-                            px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 border
+                            px-4 py-3 rounded text-sm font-medium transition-all duration-200 border
                             ${data.salesChannel === "wholesale"
                               ? 'bg-primary text-primary-foreground shadow-md border-primary'
                               : 'bg-[#FEE6EA] text-[#131718] border-transparent hover:border-[#131718]'
@@ -413,7 +413,7 @@ export function CreatorType({ data, onDataChange, targetIncome, billableHours, s
                         <button
                           onClick={() => updateData({ salesChannel: "retail" })}
                           className={`
-                            px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 border
+                            px-4 py-3 rounded text-sm font-medium transition-all duration-200 border
                             ${data.salesChannel === "retail"
                               ? 'bg-primary text-primary-foreground shadow-md border-primary'
                               : 'bg-[#FEE6EA] text-[#131718] border-transparent hover:border-[#131718]'
@@ -523,7 +523,7 @@ export function CreatorType({ data, onDataChange, targetIncome, billableHours, s
                               key={platform}
                               onClick={() => updateData({ primaryPlatform: isPlatformSelected ? undefined : platform as any })}
                               className={`
-                                px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 border
+                                px-3 py-2 rounded text-xs sm:text-sm font-medium transition-all duration-200 border
                                 ${isPlatformSelected
                                   ? 'bg-primary text-primary-foreground shadow-md border-primary'
                                   : 'bg-[#FEE6EA] text-[#131718] border-transparent hover:border-[#131718]'
@@ -982,7 +982,7 @@ export function CreatorType({ data, onDataChange, targetIncome, billableHours, s
                         id="contentType"
                         value={data.contentType || ""}
                         onChange={(e) => updateData({ contentType: e.target.value })}
-                        className="w-full px-3 py-2 rounded-lg bg-input-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-border"
+                        className="w-full px-3 py-2 rounded bg-input-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-border"
                       >
                         <option value="">Select type...</option>
                         {data.primaryPlatform === "Blog/Newsletter" ? (
@@ -1017,7 +1017,7 @@ export function CreatorType({ data, onDataChange, targetIncome, billableHours, s
                             key={right.value}
                             onClick={() => updateData({ usageRights: right.value as any })}
                             className={`
-                              px-4 py-3 rounded-lg text-left transition-all duration-200 border
+                              px-4 py-3 rounded text-left transition-all duration-200 border
                               ${data.usageRights === right.value
                                 ? 'bg-primary text-primary-foreground shadow-md border-primary'
                                 : 'bg-[#FEE6EA] text-[#131718] border-transparent hover:border-[#131718]'
