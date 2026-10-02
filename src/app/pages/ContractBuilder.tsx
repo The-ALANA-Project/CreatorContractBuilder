@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useSEO } from "@/app/lib/useSEO";
 import { Button } from "@/app/components/ui/button";
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
@@ -1048,6 +1049,12 @@ function GlassButton({
 }
 
 export default function ContractBuilder() {
+  useSEO({
+    title: "Creator Contract Builder - Free Professional Contracts for Creators",
+    description: "Free professional contract builder for creators and freelancers. Generate custom contracts with payment terms, IP rights, confidentiality clauses, liability protections, and dispute resolution. Export to PDF, markdown, or JSON.",
+    canonical: "https://creatorcontractbuilder.com/builder",
+  });
+
   const navigate = useNavigate();
   const location = useLocation();
   const [contractData, setContractData] = useState<ContractData>(DEFAULT_CONTRACT_DATA);

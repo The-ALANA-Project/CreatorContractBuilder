@@ -1,8 +1,15 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import gsap from 'gsap';
+import { useSEO } from '@/app/lib/useSEO';
 
 export default function Intro() {
+  useSEO({
+    title: "Creator Contract Builder - Free Professional Contracts for Creators",
+    description: "Free professional contract builder for creators and freelancers. Generate custom contracts with payment terms, IP rights, confidentiality clauses, liability protections, and dispute resolution. Export to PDF, markdown, or JSON.",
+    canonical: "https://creatorcontractbuilder.com/",
+  });
+
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const tubeRef = useRef<HTMLDivElement>(null);

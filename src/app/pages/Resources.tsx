@@ -2,8 +2,29 @@ import { Card, CardContent } from "@/app/components/ui/card";
 import { Button } from "@/app/components/ui/button";
 import { ExternalLink, Home } from "@/app/lib/icons";
 import { Link, useNavigate } from "react-router";
+import { useSEO } from "@/app/lib/useSEO";
 
 export default function Resources() {
+  useSEO({
+    title: "Resources for Creators - Tools, Platforms & Legal Help",
+    description: "Curated tools, platforms, and resources to help creators protect themselves, price their work, and grow their creative career. Includes legal aid, scheduling platforms, and freelance tools.",
+    canonical: "https://creatorcontractbuilder.com/resources",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Resources for Creators",
+      "url": "https://creatorcontractbuilder.com/resources",
+      "description": "Curated tools, platforms, and resources for creators and freelancers.",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "HateAid", "url": "https://hateaid.org/en/" },
+        { "@type": "ListItem", "position": 2, "name": "Meet With", "url": "https://meetwith.xyz/" },
+        { "@type": "ListItem", "position": 3, "name": "Paragraph", "url": "https://paragraph.com/" },
+        { "@type": "ListItem", "position": 4, "name": "Freelance Rate Guide", "url": "https://www.freelancerateguide.com/" },
+        { "@type": "ListItem", "position": 5, "name": "Creator Branding Studio", "url": "https://creator-branding.com/" },
+      ],
+    },
+  });
+
   const navigate = useNavigate();
 
   const resources = [
